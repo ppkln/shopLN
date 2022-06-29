@@ -27,7 +27,7 @@ module.exports.register = register
   //ฟังก์ชันเพิ่มข้อมูลสมาชิกลงฐานข้อมูล
   const addPerson = async personObj =>{
     const Numperson = 100
-    const hash = await bcrypt.hash(personObj.pwd,20)
+    const hash = await bcrypt.hash(personObj.pwd,5)
     const person = new Person({
         code_id: Numperson,
         Fname: personObj.Fname,
@@ -45,26 +45,19 @@ module.exports.register = register
 
   //เริ่ม module ดำเนินการเพิ่มข้อมูลสมาชิกใส่ลงในฐานข้อมูล
   const postRegister = (req,res,next) =>{
-    const fname = req.body.Fname
-    const lname = req.body.Lname
-    const e_mail = req.body.e_mail
-    const pwd = req.body.pwd
-    const age = req.body.age
-    const address_p = req.body.address_p
-    const mobile = req.body.mobile
     const personObj = {
-        Fname:fname,
-        Lname:lname,
-        address_p:address_p,
-        mobile:mobile,
-        e_mail:e_mail,
-        pwd:pwd,
-        age:age      
+        Fname:req.body.Fname,
+        Lname:req.body.Lname,
+        address_p:req.body.address_p,
+        mobile:req.body.mobile,
+        e_mail:req.body.e_mail,
+        pwd:req.body.pwd,
+        age:req.body.age      
         
     }
     addPerson(personObj)
         .then(()=>{
-            const success = 'ลงทะเบียนสำเร็จเรียบร้อยแล้ว'+ personObj.Fname 
+            const success = 'ลงทะเบียนสำเร็จเรียบร้อยแล้ว' 
             res.render("profile",{
                 data:{
                     pageName:"Profile Page",
