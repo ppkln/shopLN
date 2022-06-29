@@ -8,6 +8,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <title><%= data.pageName %>></title>
 </head>
+
+<script> 
+	// Function เพื่อตรวจสอบรหัสผ่านว่าตรงกันหรือไม่
+	function checkPassword(form) { 
+		pwd1 = form.pwd.value; 
+		pwd2 = form.cf_pwd.value; 
+
+		 if (pwd1 != pwd2) { 
+			alert ("รหัสผ่านไม่ตรงกัน \n(Password did not match)") 
+			return false; 
+			} 
+
+		//ถ้าทั้งสองช่องตรงกัน  return true
+		else{ 
+				return true; 
+			} 
+	} 
+</script> 
+
 <body>
     <div class="container mt-3 p-3">
         <%- include('../views/header') %>
@@ -21,17 +40,17 @@
         <div class="row">
             <div class="col-11 col-md-7 mx-auto mt-5 card">
                 <div class="card-body">
-                    <form action="/register" method="POST" id="myform1" name="form1" novalidate>
+                    <form onSubmit = "return checkPassword(this)" action="/register" method="POST" id="myform1" name="form1" novalidate>
                         <div class="form-group">
                             <label for="Fname">ชื่อ (First Name) </label>
-                            <input type="text" class="form-control" id="Fname" name="Fname" pattern="^[ก-๙A-Za-z]{3,}$ maxlength="50" required>
+                            <input type="text" class="form-control" id="Fname" name="Fname" pattern="^[ก-๙A-Za-z]{3,}$" maxlength="50" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกชื่อให้ถูกต้อง
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Lname">นามสกุล (Last Name) </label>
-                            <input type="text" class="form-control" id="Lname" name="Lname" pattern="^[ก-๙A-Za-z]{3,}$"  required>
+                            <input type="text" class="form-control" id="Lname" name="Lname" pattern="^[ก-๙A-Za-z]{3,}$" maxlength="50" required>
                             <div class="invalid-feedback">
                                 กรุณากรอกนามสกุลให้ถูกต้อง
                             </div>
@@ -41,6 +60,20 @@
                             <input type="email" class="form-control" id="e_mail" name="e_mail" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required>
                             <div class="invalid-feedback">
                                 กรุณากรอก e-mail ให้ถูกต้อง
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">รหัสผ่าน (Password) </label>
+                            <input type="password" class="form-control" id="pwd" name="pwd"  maxlength="20" required>
+                            <div class="invalid-feedback">
+                                กรุณากรอก password ให้ถูกต้อง 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cf_pwd">ยืนยันรหัสผ่าน (Confirm Password) </label>
+                            <input type="password" class="form-control" id="cf_pwd" name="cf_pwd"  maxlength="20" required>
+                            <div class="invalid-feedback">
+                                กรุณากรอก confirm password ให้ถูกต้อง
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,7 +93,7 @@
                         </div>
                         
                         <div class="text-center p-3">
-                            <button type="submit" class="btn btn-primary">ลงทะเบียน (Register) </button>
+                            <button type="submit"  class="btn btn-primary">ลงทะเบียน (Register) </button>
                         </div>
                     </form>
                 </div>

@@ -2,12 +2,14 @@ const express = require("express")
 const app = express()
 const myroute = require("./routes/myroute")
 const mongoose = require('mongoose')
+const bodyParser =require("body-parser")
 
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.json())
 app.use(myroute)
 
 app.set("view engine","ejs")
 app.set("views","views")
-
 
 
 mongoose
