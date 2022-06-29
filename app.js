@@ -11,9 +11,9 @@ app.use(myroute)
 app.set("view engine","ejs")
 app.set("views","views")
 
-
+//"mongodb://localhost:27017/LNdataDB"
 mongoose
-    .connect("mongodb://localhost:27017/LNdataDB",{useNewUrlParser:true,useUnifiedTopology:true}
+    .connect("mongodb+srv://Nueng80:Neung9426251223@clusterln1.7vsde.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser:true,useUnifiedTopology:true}
     ).then(()=> console.log("Connected to MongoDB..."))
     .catch(err=>console.log("Cannot connect to MongoDB",err))
 

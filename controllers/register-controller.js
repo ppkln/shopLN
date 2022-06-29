@@ -64,14 +64,14 @@ module.exports.register = register
     }
     addPerson(personObj)
         .then(()=>{
-            const success = 'ลงทะเบียนสำเร็จเรียบร้อยแล้ว'
+            const success = 'ลงทะเบียนสำเร็จเรียบร้อยแล้ว'+ personObj.Fname 
             res.render("profile",{
                 data:{
-                    pageName:"Profile",
+                    pageName:"Profile Page",
                     message : success,
+                    Fname: personObj.Fname,
+                    Lname:personObj.Lname,
                     isPerson : personObj.e_mail,
-                    mobiles:personObj.mobile,
-                    addresss:personObj.address_p,
                     class:"alert alert-primary"
                 }
             })
@@ -80,7 +80,7 @@ module.exports.register = register
             res.status(401).render("register",{
                 data:{
                     pageName: "Register",
-                    message: err,
+                    message: "e-mail นี้มีการใช้งานในระบบอยู่แล้ว",
                     class:"alert alert-danger"
                 }
             })
