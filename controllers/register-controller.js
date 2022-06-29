@@ -1,6 +1,7 @@
 const Person = require("../models/persons")
 const User = require("../models/users")
 const bcrypt = require("bcryptjs")
+const { text } = require("body-parser")
 
 
 const register = (req,res,next) => {
@@ -45,23 +46,25 @@ module.exports.register = register
 
   //เริ่ม module ดำเนินการเพิ่มข้อมูลสมาชิกใส่ลงในฐานข้อมูล
   const postRegister = (req,res,next) =>{
+    const txts = req.body.e_mail
     const personObj = {
         Fname:req.body.Fname,
         Lname:req.body.Lname,
         address_p:req.body.address_p,
         mobile:req.body.mobile,
-        e_mail:req.body.e_mail,
+        e_mail: txts.toLowerCase(),
         pwd:req.body.pwd,
         age:req.body.age      
         
     }
+    //เรียกใช้ฟังก์ชัน addPerson ที่ได้สร้างไว้
     addPerson(personObj)
         .then(()=>{
-            const success = 'ลงทะเบียนสำเร็จเรียบร้อยแล้ว' 
+            
             res.render("profile",{
                 data:{
                     pageName:"Profile Page",
-                    message : success,
+                    message : "บันทึกสำเร็จ",
                     Fname: personObj.Fname,
                     Lname:personObj.Lname,
                     isPerson : personObj.e_mail,
@@ -69,11 +72,11 @@ module.exports.register = register
                 }
             })
         })
-        .catch(err=>{
+        .catch(err=>{            
             res.status(401).render("register",{
                 data:{
                     pageName: "Register",
-                    message: "e-mail นี้มีการใช้งานในระบบอยู่แล้ว",
+                    message: "มี e-mail นี้ในระบบแล้ว",
                     class:"alert alert-danger"
                 }
             })
