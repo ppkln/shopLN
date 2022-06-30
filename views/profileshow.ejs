@@ -13,8 +13,12 @@
         <%- include('../views/header') %>
         <div class="row">
             <div class="col-md-8 mx-auto text-center  ">
-                <div class="<%= data.class %>">
-                    <h3 class="display-5"><%= data.message %></h3>
+                <div class="alert alert-primary">
+                    <h1 class="display-5"><% Object.values(data).forEach(function(item){ %></h1>
+                    <h3 class="display-5">คุณ : <%= item.Fname %> <%= item.Lname %></h3>
+                    <h3 class="display-5">เลขสมาชิก : <%= item.code_id %></h3>
+                    <h3 class="display-5">Username : <%= item.e_mail %></h3>
+                    <% }) %>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ router.get("/",homeController)
 router.get("/register",registerController.register)
 router.get("/profileshow",profileshowcontroller)
 
+
 router.post("/register",registerController.postRegister)
 
 module.exports = router
