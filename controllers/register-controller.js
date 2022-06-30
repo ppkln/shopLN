@@ -17,7 +17,7 @@ module.exports.register = register
   //ฟังก์ชันเพิ่มข้อมูลสมาชิกลงฐานข้อมูล
   const addPerson = async personObj =>{
     const hash = await bcrypt.hash(personObj.pwd,5)
-     Person.find({}).sort({code_id:-1}).limit(1).exec((err,doc)=>{//ทำการค้นหาค่าตัวเลขสมาชิกที่มากที่สุดจากฐานข้อมูล
+     Person.find({}).sort({code_id:-1}).limit(1).exec((err,doc)=>{//ทำการค้นหาค่าตัวเลขสมาชิกที่มากที่สุดจากฐานข้อมูล โดยค่าที่ค้นพบจะเก็บไว้ในตัวแปร doc มีชนิดเป็น object-arry
         if(err){
             console.log("มีข้อบกพร่องเกี่ยวกับการค้นหาข้อมูลเกิดขึ้น กรุณาแจ้งทีมงาน")
         } else {
