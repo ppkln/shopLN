@@ -13,19 +13,17 @@ const register = (req,res,next) => {
     })
 }
 module.exports.register = register
+
   //ฟังก์ชันเพิ่มข้อมูลสมาชิกลงฐานข้อมูล
   const addPerson = async personObj =>{
     const hash = await bcrypt.hash(personObj.pwd,5)
-    var nmPer=0
-     Person.find({}).sort({code_id:-1}).limit(1).exec((err,doc)=>{
+     Person.find({}).sort({code_id:-1}).limit(1).exec((err,doc)=>{//ทำการค้นหาค่าตัวเลขสมาชิกที่มากที่สุดจากฐานข้อมูล
         if(err){
             console.log("มีข้อบกพร่องเกี่ยวกับการค้นหาข้อมูลเกิดขึ้น กรุณาแจ้งทีมงาน")
         } else {
-            Object.values(doc).forEach(function(item){
-                nmPer = item.code_id
-                const Numperson = nmPer + 1
+            Object.values(doc).forEach(function(item){//ทำการดึงข้อมูล code_id ที่อยู่ในตัวแปร doc (เป็น Object-arry) ที่ filterได้มาออกมาเพื่อ +1 
                 const person = new Person({
-                    code_id: Numperson,
+                    code_id: item.code_id + 1,
                     Fname: personObj.Fname,
                     Lname: personObj.Lname,
                     address_p: personObj.address_p,
