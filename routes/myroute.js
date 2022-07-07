@@ -7,6 +7,9 @@ const productshowcontroller = require("../controllers/productshow-controller")
 const insertproductcontroller = require("../controllers/insertProduct-controller")
 const managecontroller = require("../controllers/manage-controller")
 const deletecontroller = require("../controllers/delete-controller")
+const productdetailcontroller = require("../controllers/productdetail-controller")
+const editProcontroller = require("../controllers/editPro-controller")
+const editProductDBcontroller = require("../controllers/editProductDB-controller")
 
 //สำหรับอัพโหลดไฟล์ภาพ
 const products = require("../models/productDoc") 
@@ -32,9 +35,12 @@ router.get("/productshow",productshowcontroller)
 router.get("/insertProductform",insertproductcontroller.insertProductform)
 router.get("/manage",managecontroller)
 router.get("/delete/:id",deletecontroller)
+router.get("/productdetail/:id",productdetailcontroller)
 
 
 router.post("/register",registerController.postRegister)
+router.post("/editProduct",editProcontroller)
+router.post("/editProductDB",editProductDBcontroller)
 router.post("/insertproductToDB",uploadProduct.single("productImage"),(req,res)=>{
     let data = new products ({
         productId : req.body.productId,
