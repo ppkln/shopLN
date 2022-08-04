@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-11 col-md-7 mx-auto mt-5 card">
                 <div class="card-body">
-                    <form onSubmit = "return checkPassword(this)" action="/register" method="POST" id="myform1" name="form1" novalidate>
+                    <form onSubmit = "return checkPassword(this)" action="/register" method="POST" id="myform1" name="myform1" novalidate>
                         <div class="form-group">
                             <label for="Fname">ชื่อ (First Name) </label>
                             <input type="text" class="form-control" id="Fname" name="Fname" pattern="^[ก-๙A-Za-z]{3,}$" maxlength="50" required>
@@ -102,6 +102,7 @@
     </div>
     <!--คำสั่งตรวจสอบเพื่อแจ้งเตือนเมื่อกรอกข้อความไม่ตรงตามเงื่อนไข หากไม่มีคำสั่งชุดนี้จะไม่มีการแจ้งข้อความเตือนเมื่อผู้ใช้กรอกข้อมูลไม่เป็นไปเงื่อนไขที่ระบุไว้-->
     <!--โดย เพิ่ม property "novalidate" ให้กับ form โดยพิมพ์คำสั่งว่า "novalidate" ในช่องของ form-->
+    <!-- โดย "novalidate" จะเป็นการยกเลิกการตรวจสอบฟอร์มจาก browser มาเป็นตรวจสอบฟอร์มแบบกำหนดเอง -->
     <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>  
     <script type="text/javascript">
         $(function(){
